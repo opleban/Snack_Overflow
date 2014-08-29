@@ -28,6 +28,8 @@ gem 'spring',        group: :development
 
 gem 'devise'
 
+gem 'faker'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -42,4 +44,5 @@ gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'faker'
 end
