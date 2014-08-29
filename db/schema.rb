@@ -25,8 +25,10 @@ ActiveRecord::Schema.define(version: 20140829214423) do
   end
 
   create_table "comments", force: true do |t|
-    t.text     "body",                   null: false
-    t.integer  "score",      default: 0
+    t.text     "body",                      null: false
+    t.integer  "score",         default: 0
+    t.integer  "feedback_id"
+    t.string   "feedback_type"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -42,6 +44,7 @@ ActiveRecord::Schema.define(version: 20140829214423) do
   end
 
   create_table "users", force: true do |t|
+    t.string   "user_name",                           null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
