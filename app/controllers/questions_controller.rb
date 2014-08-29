@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
 
   def new
     question = Question.new
+    render :index_form
   end
 
   def edit  
