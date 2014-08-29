@@ -17,9 +17,10 @@ ActiveRecord::Schema.define(version: 20140829214423) do
   enable_extension "plpgsql"
 
   create_table "answers", force: true do |t|
-    t.text     "body",                   null: false
-    t.integer  "score",      default: 0
+    t.text     "body",                    null: false
+    t.integer  "score",       default: 0
     t.integer  "user_id"
+    t.integer  "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
