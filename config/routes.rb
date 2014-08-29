@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   get '/' => 'application#index'
+  resources :questions
+  resources :answers
+  resources :comments
 
   devise_for :users
   devise_scope :user do
