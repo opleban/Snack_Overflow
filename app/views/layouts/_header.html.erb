@@ -1,0 +1,14 @@
+<header>
+  <%=
+   link_to_if(session[:user_id].nil?, "Login", { controller: "users", action: "login" }) do
+     link_to("Log Out", { controller: "users", action: "logout", id: session[:user_id] })
+   end
+%>
+
+<%=
+   link_to_if(session[:user_id].nil?, "Sign Up", { controller: "users", action: "new" }) do
+     link_to("My Account", { controller: "users", action: "show", id: session[:user_id] })
+   end
+%>
+<%= link_to "Home", root_path %>
+</header>
