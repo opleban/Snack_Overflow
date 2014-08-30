@@ -1,3 +1,27 @@
 body {
  background-image: url('http://images6.fanpop.com/image/photos/36200000/Food-image-food-36200386-1762-1319.jpg');
+ background-attachment: fixed;
+ background-repeat: no-repeat;
+ background-size:cover;
 }
+
+.top-questions{
+  padding-top: 0.5em;
+  border: 0.5em solid black;
+  background-color: rgba(255,255,255, 0.6);
+  margin:auto;
+}
+
+.question-item{
+  list-style:none;
+}
+.question-item:nth-child(2n){
+  background-color: rgba(210, 210, 210,0.6);
+}
+
+.question-category{
+  display: inline-block;
+  margin:0.5em;
+}
+
+
