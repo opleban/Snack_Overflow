@@ -14,7 +14,7 @@
 <table>
   <% Question.top.each do |question| %>
     <tr>
-      <td><%= link_to(question.title, question)%></td>
+      <td><%= link_to(question.title, [question.user, question])%></td>
       <td><%= link_to(question.user.username,question.user)%></td>
       <td><%= question.score %></td>
       <td><%= Time.at(question.created_at).to_time.strftime('%v %r').gsub(/^0/,"") %></td>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :sessions
 
+  #Provides top-level routes for all resources except commnets as well as nested routes for one-to-many resources
   resources :users, shallow: true do
     resources :questions
     resources :answers

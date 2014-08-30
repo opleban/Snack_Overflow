@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @user = Question.find(params[:user_id])
   end
 
   def index
