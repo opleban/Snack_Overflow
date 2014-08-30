@@ -1,6 +1,24 @@
 <% provide(:title, @user.name) %>
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-  <%= @user.email %>
-</h1>
+
+<div class = "current_user">
+  <h1>
+    <%= gravatar_for @user %>
+    <%= @user.name %>
+  </h1>
+  <h3>
+    <%= @user.email %>
+  </h3>
+</div>
+<hr>
+
+<div class = "user_questions">
+  <ul style = "list-style:none">
+  <% @user.questions.each do |q| %>
+    <li><h2><a href = ""><%= q.title %></a></h2></li>
+    <li><%= q.body %></li>
+  <% end %>
+  </ul>
+
+</div>
+
+
