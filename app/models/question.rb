@@ -10,5 +10,4 @@ class Question < ActiveRecord::Base
   def self.top
     User.take()
   end
-  scope :top, -> (score) { where("scope < ?", time) }
 end
