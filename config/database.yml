@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: snack_overflow_production
-  username: snack_overflow
-  password: <%= ENV['SNACK_OVERFLOW_DATABASE_PASSWORD'] %>
+  # username: snack_overflow
+  # password: <%= ENV['SNACK_OVERFLOW_DATABASE_PASSWORD'] %>
