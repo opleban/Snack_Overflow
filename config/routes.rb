@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   root :to => "welcome#index"
 
-  get '/users/logout' => "users#logout"
-  get '/users/login' => "users#login"
-  post '/login_user' => "users#login_user"
+  resources :sessions, only: [:new, :create, :destroy]
+  # match '/signup',  to: 'users#new',            via: 'get'
+  # match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
 
-  resources :sessions
+
 
   resources :users, shallow: true do
     resources :questions
