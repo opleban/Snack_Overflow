@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 20140830210422) do
   end
 
   create_table "questions_tags", force: true do |t|
-    t.integer "tags_id"
-    t.integer "questions_id"
+    t.integer "tag_id"
+    t.integer "question_id"
   end
 
   create_table "tags", force: true do |t|
