@@ -2,11 +2,11 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
-    render :index_form
   end
 
   def show
-
+    @question = Question.find(params[:id])
+    @user = Question.find(params[:user_id])
   end
 
   def index
