@@ -12,12 +12,12 @@
 
 <h3>Top Questions </h3>
 <table>
-  <% Question.all.each do |question| %>
+  <% Question.top.each do |question| %>
     <tr>
-      <td>question.title</td>
-      <td>question.user</td>
-      <td>question.score</td>
-      <td>question.created_at</td>
+      <td><%= link_to(question.title, question)%></td>
+      <td><%= link_to(question.user.username,question.user)%></td>
+      <td><%= question.score %></td>
+      <td><%= Time.at(question.created_at).to_time.strftime('%v %r').gsub(/^0/,"") %></td>
     </tr>
   <% end %>
 </table>
