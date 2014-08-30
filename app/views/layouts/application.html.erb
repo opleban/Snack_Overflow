@@ -15,6 +15,14 @@
    end
 %>
 
+<<<<<<< HEAD
+  <%= render 'layouts/header' %>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+=======
 <%=
    link_to_if(session[:user_id].nil?, "Sign Up", { controller: "users", action: "new" }) do
      link_to("My Account", { controller: "users", action: "show", id: session[:user_id] })
@@ -23,6 +31,7 @@
 <%= link_to "Home", root_path %>
 </header>
 <body style="background-image: url('http://images6.fanpop.com/image/photos/36200000/Food-image-food-36200386-1762-1319.jpg');">
+>>>>>>> master
 
   <div class="container">
     <% flash.each do |key, value| %>

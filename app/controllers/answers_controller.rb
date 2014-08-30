@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   def new
-    answer = Answer.new
+    @answer = Answer.new
     render :answer_form
   end
 
