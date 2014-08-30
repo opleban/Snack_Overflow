@@ -46,3 +46,5 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem "shoulda-matchers"
 end
+
+ruby '2.0.0'
