@@ -1,0 +1,9 @@
+<h1>Ask a Question</h1>
+
+<%= form_tag("/questions", method:"post") do %>
+  <%= label_tag(:title, "Title:") %>
+  <%= text_field_tag(:title) %>
+  <%= label_tag(:content, "Content:") %>
+  <%= text_field_tag(:content) %>
+  <%= submit_tag("Submit") %>
+<% end %>

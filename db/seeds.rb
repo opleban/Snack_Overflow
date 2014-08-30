@@ -1,10 +1,5 @@
 require 'faker'
 
-
-Question.create(title: Faker::Lorem.sentence,
-                      body: Faker::Lorem.sentence,
-                      :user_id => rand(1..10))
-
 # module QuestionImporter
 #   def self.import
 #     10.times do

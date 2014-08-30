@@ -11,4 +11,13 @@ class Question < ActiveRecord::Base
     Question.order(:score).take(10)
   end
 
+  def show
+  end
+
+  def index
+  end
+
+  def new
+  end
+
 end
