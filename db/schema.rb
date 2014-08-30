@@ -56,10 +56,10 @@ ActiveRecord::Schema.define(version: 20140830041546) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",       limit: 30
-    t.string   "username",   limit: 30
-    t.string   "email",      limit: 30
-    t.string   "password",   limit: 30
+    t.string   "name",       limit: 50
+    t.string   "username",   limit: 50
+    t.string   "email",      limit: 50
+    t.string   "password",   limit: 50
     t.datetime "created_at"
     t.datetime "updated_at"
   end
