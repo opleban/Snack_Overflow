@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  root :to =>'welcome#index'
 
-  get '/' => 'application#index'
   resources :questions
   resources :answers
   resources :comments
@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     authenticated :user do
       root "application#index", as: :authenticated_root
-    end  
+    end
 
     unauthenticated do
       root "devise/session#new", as: :unauthenticated_root
