@@ -1,32 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SnackOverflow</title>
+  <title>Snack Overflow</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<h4 style="margin: 10px 10px 5px 10px"> Snack Overflow </h4>
+<header style="margin: 5px 10px;">
+  <%=
+   link_to_if(session[:user_id].nil?, "Login", { controller: "users", action: "login" }) do
+     link_to("Log Out", { controller: "users", action: "logout", id: session[:user_id] })
+   end
+%>
 
-<p class="navbar-text pull-right">
-<% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-<% end %>
-</p>
+<<<<<<< HEAD
+  <%= render 'layouts/header' %>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+=======
+<%=
+   link_to_if(session[:user_id].nil?, "Sign Up", { controller: "users", action: "new" }) do
+     link_to("My Account", { controller: "users", action: "show", id: session[:user_id] })
+   end
+%>
+<%= link_to "Home", root_path %>
+</header>
+<body style="background-image: url('http://images6.fanpop.com/image/photos/36200000/Food-image-food-36200386-1762-1319.jpg');">
+>>>>>>> master
 
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
-
-<%= yield %>
-
+  <div class="container">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+    <%= yield %>
+  </div>
+<footer>
+  <p style="margin: 10px">All Rights Reserved. Brought to you by The Quacks.</p>
+</footer>
 </body>
 </html>
