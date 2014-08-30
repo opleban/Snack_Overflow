@@ -1,18 +1,23 @@
 Rails.application.routes.draw do
-  root :to =>'welcome#index'
+  root :to => "welcome#index"
 
-  resources :questions
-  resources :answers
-  resources :comments
+  get '/users/logout' => "users#logout"
+  get '/users/login' => "users#login"
+  post '/login_user' => "users#login_user"
 
-  devise_for :users
-  devise_scope :user do
-    authenticated :user do
-      root "application#index", as: :authenticated_root
-    end
-
-    unauthenticated do
-      root "devise/session#new", as: :unauthenticated_root
-    end
+  resources :users, shallow: true do
+    resources :questions
+    resources :answers
+    resources :comments
   end
+
+  resources :questions, shallow: true do
+    resources :answers
+    resources :comments
+  end
+
+  resources :answers, shallow: true do
+    resources :comments
+  end
+
 end

@@ -1,0 +1,24 @@
+<h1>Welcome to Snack Overflow</h1>
+
+<%= form_tag("/questions/search", method:"get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<%= link_to "Ask a Question", new_question_path %>
+<%= link_to "Browse Questions", questions_path %>
+<%= link_to "Browse Users", users_path %>
+
+<h3>Top Questions </h3>
+<table>
+  <% Question.top.each do |question| %>
+    <tr>
+      <td>question.title</td>
+      <td>question.user</td>
+      <td>question.score</td>
+      <td>question.created_at</td>
+    </tr>
+  <% end %>
+</table>
+
