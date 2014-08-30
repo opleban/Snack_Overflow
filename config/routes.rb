@@ -9,18 +9,18 @@ Rails.application.routes.draw do
 
 
   #Provides top-level routes for all resources except commnets as well as nested routes for one-to-many resources
-  resources :users
+  resources :users do
     resources :questions
     resources :answers
     resources :comments
   end
 
-  resources :questions
+  resources :questionsdo
     resources :answers
     resources :comments
   end
 
-  resources :answers
+  resources :answers do
     resources :comments
   end
 
