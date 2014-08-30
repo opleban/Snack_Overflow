@@ -12,7 +12,7 @@
 
 <h3>Top Questions </h3>
 <table>
-  <% Question.top.each do |question| %>
+  <% Question.all.each do |question| %>
     <tr>
       <td>question.title</td>
       <td>question.user</td>
