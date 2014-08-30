@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
     render :index_form
   end
 
-  def edit
+  def show
 
   end
 

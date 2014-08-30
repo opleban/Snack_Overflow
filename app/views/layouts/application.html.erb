@@ -2,25 +2,14 @@
 <html>
 <head>
   <title>Snack Overflow</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag 'application', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<h4 style="margin: 10px 10px 5px 10px"> Snack Overflow </h4>
-<header style="margin: 5px 10px;">
+<body>
 
-<%= render 'layouts/header' %>
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-<%= yield %>
-<%= render 'layouts/footer' %>
-
-<%= link_to "Home", root_path %>
-</header>
-<body style="background-image: url('http://images6.fanpop.com/image/photos/36200000/Food-image-food-36200386-1762-1319.jpg');">
->>>>>>> master
+  <%= render 'layouts/header' %>
 
   <div class="container">
     <% flash.each do |key, value| %>
@@ -28,8 +17,8 @@
     <% end %>
     <%= yield %>
   </div>
-<footer>
-  <p style="margin: 10px">All Rights Reserved. Brought to you by The Quacks.</p>
-</footer>
+
+<%= render 'layouts/footer' %>
+
 </body>
 </html>
