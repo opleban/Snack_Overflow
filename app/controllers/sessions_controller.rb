@@ -4,6 +4,10 @@ class SessionsController < ApplicationController
 
   end
 
+  def show 
+
+  end
+
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
@@ -17,7 +21,10 @@ class SessionsController < ApplicationController
 
 
   def destroy
-    sessions[:user_id]  = nil
+    session[:user_id]  = nil
+    p session[:user_id]
+    flash[:success] = "Successfully logged out."
+    redirect_to root_path
   end
 
 
