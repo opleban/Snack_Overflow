@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/users/login' => "users#login"
   post '/login_user' => "users#login_user"
 
+  resources :sessions
+
   resources :users, shallow: true do
     resources :questions
     resources :answers

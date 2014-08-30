@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20140830041546) do
     t.string   "name",       limit: 30
     t.string   "username",   limit: 30
     t.string   "email",      limit: 30
+    t.string   "password",   limit: 30
     t.datetime "created_at"
     t.datetime "updated_at"
   end
