@@ -11,14 +11,21 @@
 </div>
 <hr>
 
-<div class = "user_questions">
-  <ul style = "list-style:none">
-  <% @user.questions.each do |q| %>
-    <li><h2><a href = ""><%= q.title %></a></h2></li>
-    <li><%= q.body %></li>
-  <% end %>
-  </ul>
-
+<div class = "user_questions_outer">
+  <div class = "user_questions_inner">
+    <ul>
+    <% @user.questions.each do |q| %>
+      <li>
+        <h2>
+          <%=
+          link_to(q.title, {controller: "questions", action: "show", id: q.id })
+          %>
+        </h2>
+      </li>
+      <li><%= q.body %></li>
+    <% end %>
+    </ul>
+  </div>
 </div>
 
-
+<%= link_to 'Edit My Profile', edit_user_path(@user.id) %>
