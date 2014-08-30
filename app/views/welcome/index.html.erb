@@ -11,14 +11,19 @@
 <%= link_to "Browse Users", users_path %>
 
 <h3>Top Questions </h3>
-<table>
-  <% Question.all.each do |question| %>
-    <tr>
-      <td>question.title</td>
-      <td>question.user</td>
-      <td>question.score</td>
-      <td>question.created_at</td>
-    </tr>
+<div class="top-questions">
+  <% Question.top.each do |question| %>
+    <ul class="question-item">
+      <div class="question_title">
+        <li class="question-category">Answers: <%= question.answers.count  %></li>
+        <li class="question-category">Score: <%= question.score %></li>
+        <li class="question-category">Question: <%= link_to(question.title, "/users/#{question.user.id}/questions/#{question.id}") %></li>
+      </div>
+      <div>
+        <li class="question-category">Asked By: <%= link_to(question.user.username,question.user) %> </li>
+        <li class="question-category"><%= Time.at(question.created_at).to_time.strftime('%v %r') %></li>
+      </div>
+    </ul>
   <% end %>
-</table>
+</div>
 
