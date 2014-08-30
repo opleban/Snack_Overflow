@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
 	validates :body, :presence => true
 
   def self.top
-    User.take()
+    Question.order(:score).take(10)
   end
-  scope :top, -> (score) { where("scope < ?", time) }
+
 end
