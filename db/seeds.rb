@@ -1,39 +1,24 @@
 require 'faker'
 
+module OverflowImporter
+  def self.import
+    20.times do
+      FactoryGirl.create(:user)
+    end
+    20.times do
+      question = FactoryGirl.create(:question, user:User.all.sample)
+      question.tags << FactoryGirl.create(:tag)
 
-Question.create(title: Faker::Lorem.sentence,
-                      body: Faker::Lorem.sentence,
-                      :user_id => rand(1..10))
+    end
+    30.times do
+      FactoryGirl.create(:answer, question:Question.all.sample, user:User.all.sample)
+      comment = FactoryGirl.create(:comment, user:User.all.sample)
+      [Question.all.sample, Answer.all.sample].sample.comments << comment
+    end
+  end
+end
 
-# module QuestionImporter
-#   def self.import
-#     10.times do
-#       Question.create(title: Faker::Lorem.sentence,
-#                       body: Faker::Lorem.sentence,
-#                       :user_id => rand(1..10))
-#     end
-#   end
-# end
+OverflowImporter.import
 
-# module UserImporter
-#   def self.import
-#     10.times do
-#       User.create(user_name: Faker::Internet.user_name,
-#                   email: Faker::Internet.email)
-#     end
-#   end
-# end
 
-# module AnswerImporter
-#   def self.import
-#     50.times do
-#       Answer.create(body: Faker::Lorem.sentence,
-#                     :user_id => rand(1..10))
-#     end
-#   end
-# end
-
-# AnswerImporter.import
-# QuestionImporter.import
-# UserImporter.import
 
