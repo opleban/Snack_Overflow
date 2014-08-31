@@ -56,3 +56,23 @@
   })
 </script>
 
+<script type="text/javascript" charset="utf-8">
+  $('.update').on('click', function(e) {
+    e.preventDefault();
+    var formData = $(this).parents("form").serialize();
+    debugger
+    $.ajax({
+      url: '/users/21',
+      type: 'put',
+      dataType: 'json',
+      data: formData
+    }).done(function(jsonResponse) {
+      debugger
+      $('.current_user').replaceWith(jsonResponse)
+      console.log('madeithere');
+    // console.log(formatData.format)
+      // e.preventDefault();
+    })
+  })
+</script>
+
