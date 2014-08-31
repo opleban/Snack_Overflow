@@ -9,7 +9,10 @@
 </div>
 
 <div class="answer">
-<% puts "made it back to answer"%>
 <h2>There are <%= @question.answers.count %> answers</h2>
-  <%= render 'answers/new.html.erb' %>
+  <% if session[:user_id] %>
+    <%= render :partial => 'answers/new.html.erb', :locals => {:question => @question } %>
+  <% else %>
+    <%= link_to("Sign In to answer this Question", {controller: "sessions", action: "new"}) %>
+  <% end %>
 </div>
