@@ -1,6 +1,31 @@
 <% provide(:title, @user.name) %>
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-  <%= @user.email %>
-</h1>
+
+<div class = "current_user">
+  <h1>
+    <%= gravatar_for @user %>
+    <%= @user.name %>
+  </h1>
+  <h3>
+    <%= @user.email %>
+  </h3>
+</div>
+<hr>
+
+<div class = "user_questions_outer">
+  <div class = "user_questions_inner">
+    <ul>
+    <% @user.questions.each do |q| %>
+      <li>
+        <h2>
+          <%=
+          link_to(q.title, {controller: "questions", action: "show", id: q.id })
+          %>
+        </h2>
+      </li>
+      <li><%= q.body %></li>
+    <% end %>
+    </ul>
+  </div>
+</div>
+
+<%= link_to 'Edit My Profile', edit_user_path(@user.id) %>
