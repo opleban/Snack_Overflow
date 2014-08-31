@@ -1,3 +1,33 @@
+.users {
+	display: inline-block;
+}
+body {
+ background-image: url('../snack-background.jpg');
+ background-attachment: fixed;
+ background-repeat: no-repeat;
+ background-size:cover;
+}
+
+.top-questions{
+  padding-top: 0.5em;
+  border: 0.5em solid black;
+  background-color: rgba(255,255,255, 0.6);
+  margin:auto;
+}
+
+.question-item{
+  list-style:none;
+}
+.question-item:nth-child(2n){
+  background-color: rgba(210, 210, 210,0.6);
+}
+
+.question-category{
+  display: inline-block;
+  margin:0.5em;
+}
+
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -10,8 +40,9 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
- *= require "users"
- *= require "welcome"
+
+
+
+
  */
+
