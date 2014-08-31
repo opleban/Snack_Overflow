@@ -15,8 +15,20 @@
 
 </div>
 
-<div class="answer">
-<% puts "made it back to answer"%>
+
 <h2>There are <%= @question.answers.count %> answers</h2>
+  <ul>
+    <% @question.answers.each do |answer| %>
+      <li> <%= answer.body %>
+        <ul>
+          <% answer.comments.each do |comment| %>
+            <li><%= comment.body %></li>
+          <% end %>
+        </ul>
+        <%= render partial:'comments/new.html.erb', locals:{post_type:"answer", post:answer} %>
+      </li>
+    <% end %>
+  </ul>
+
   <%= render 'answers/new.html.erb' %>
 </div>
