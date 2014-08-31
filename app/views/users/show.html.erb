@@ -11,7 +11,7 @@
   <%= link_to 'Edit My Profile', edit_user_path(@user.id), :class => "edit" %>
 </div>
 <hr>
-<%= render 'form' %>
+<%= render 'edit' %>
 
 
 <div class = "user_questions_outer">
@@ -33,9 +33,26 @@
 
 <script type="text/javascript" charset="utf-8">
   $('a.edit').on('click', function(e) {
-    debugger
     e.preventDefault();
-    $('.edit_form').css('display', 'block')
+    $('.edit_form').css({
+                        'display': 'block'});
+
+    //                     'position':'relative',
+    //                     'opacity' : '1',
+    //                     'background-color' : 'white',
+    //                     'z-index' : '10'
+
+    //                   });
+    // $('.container').css({
+    //                       'display':'block',
+    //                       'position':'relative',
+    //                      'opacity' : '.1',
+    //                      'z-index' :'-10'
+    //                      // 'filter':'blur(10px)'
+
+         
+    //                     });
+
   })
 </script>
 

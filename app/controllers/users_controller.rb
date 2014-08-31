@@ -22,16 +22,16 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-  
-  def edit
-    @user = User.find(params[:id])
-  end
 
   def update
+    p params["user"]["password"]
     @user = User.find(params[:id])
-    @user.update_attributes(user_params)
-
-    redirect_to @user
+    if @user.password == params[:user][:password]
+      @user.update_attributes(user_params)
+      redirect_to @user
+    else
+      render 'show'
+    end
   end
 
   private 
