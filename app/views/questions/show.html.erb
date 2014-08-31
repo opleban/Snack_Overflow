@@ -1,5 +1,6 @@
 <div class="header">
   <h1><%= @question.title %></h1>
+  <%= render partial:'comments/new.html.erb', locals:{post_type:"question", post:@question} %>
 </div>
 
 <div class="content">
