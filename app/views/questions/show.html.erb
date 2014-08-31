@@ -2,6 +2,12 @@
   <h1><%= @question.title %></h1>
   <%= render partial:'comments/new.html.erb', locals:{post_type:"question", post:@question} %>
 </div>
+  <ul class=comments_list>
+    <h4>Comments</h4>
+    <% @question.comments.each do |comment| %>
+      <li><%= comment.body %></li>
+    <% end %>
+  </ul>
 
 <div class="content">
   <div class="votes">
