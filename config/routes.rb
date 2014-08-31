@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   # match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
 
-  #Provides top-level routes for all resources except commnets as well as nested routes for one-to-many resources
   resources :users do
     resources :questions
     resources :answers
@@ -21,5 +20,4 @@ Rails.application.routes.draw do
   resources :answers do
     resources :comments
   end
-
 end
