@@ -25,11 +25,18 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.password == params[:user][:password]
-      @user.update_attributes(user_params)
-      redirect_to @user
-    else
-      render 'show'
+
+    respond_to do |format|
+      # if @user.password == params[:user][:password]
+    if @user.update_attributes(user_params)
+
+      format.html { redirect_to @user, notice: 'Twoot was successfully updated.' }
+      format.json { render action: update, notice: 'fuck that shit' }
+      # redirect_to @user
+      # return @user
+      else
+        render 'show'
+      end
     end
   end
 
