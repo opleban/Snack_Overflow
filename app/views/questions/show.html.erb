@@ -1,1 +1,15 @@
-<h1><%= @question.title %></h1>
+<div class="header">
+  <h1><%= @question.title %></h1>
+</div>
+
+<div class="content">
+  <div class="votes">
+  </div>
+
+</div>
+
+<div class="answer">
+<% puts "made it back to answer"%>
+<h2>There are <%= @question.answers.count %> answers</h2>
+  <%= render 'answers/new.html.erb' %>
+</div>
