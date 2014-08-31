@@ -24,7 +24,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    p params["user"]["password"]
     @user = User.find(params[:id])
     if @user.password == params[:user][:password]
       @user.update_attributes(user_params)
