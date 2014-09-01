@@ -56,6 +56,10 @@ $(document).ready(function(){
 
     clearCommentFormText: function(eventTarget){
       eventTarget.siblings("textarea").val("")
+    },
+
+    renderVoteCount:function(data){
+      $(".question-score").html(data.score)
     }
   };
 
