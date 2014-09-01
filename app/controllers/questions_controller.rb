@@ -29,6 +29,7 @@ class QuestionsController < ApplicationController
     @question.save
     respond_to do |format|
       format.json { render json: {score:@question.score}, status: :ok}
+      format.html{ redirect_to :back }
     end
   end
 
