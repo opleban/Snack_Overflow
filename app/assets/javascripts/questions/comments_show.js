@@ -74,6 +74,10 @@ $(document).ready(function(){
       $(".expand-comments-list").on("click", qPageView.toggleCommentsListDisplay);
     },
 
+    addQuestionCommentButtonEventListener: function(){
+      $(".question-comment-button").on("click", qPageView.toggleQuestionCommentFormDisplay);
+    },
+
 // MAKES AJAX POST REQUEST THEN CALLS VIEW FUNCTION TO RENDER THE COMMENT
 // ON THE PAGE USING doT TEMPLATE. SEE questions/views/show.html.erb FOR doT SCRIPT AT THE BOTTOM OF THE PAGE.
   createAndRenderComment: function(e){
