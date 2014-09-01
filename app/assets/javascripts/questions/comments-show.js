@@ -11,21 +11,27 @@ $(document).ready(function(){
     toggleAnswerCommentFormDisplay: function(e){
       var answerCommentButton = $(e.target);
       var answerCommentForm = $(e.target).siblings(".answer-comment-form");
-      answerCommentForm.slideToggle();
-      if (answerCommentForm.css("display") === "none")
+      if (answerCommentForm.css("display") === "none"){
+        answerCommentForm.slideToggle();
         answerCommentButton.html("Hide comment form");
-      else
+      }
+      else{
+        answerCommentForm.slideToggle();
         answerCommentButton.html("Comment");
+      }
     },
 
     toggleQuestionCommentFormDisplay: function(e){
       var questionCommentButton = $(e.target);
       var questionCommentForm = $(".question-comment-form");
-      questionCommentForm.slideToggle();
-      if (questionCommentForm.css("display") === "none")
+      if (questionCommentForm.css("display") === "none"){
+        questionCommentForm.slideToggle();
         questionCommentButton.html("Hide comment form");
-      else
+      }
+      else{
+        questionCommentForm.slideToggle();
         questionCommentButton.html("Comment");
+      }
     },
 
     toggleCommentsListDisplay:function(e){
