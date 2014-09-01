@@ -8,19 +8,29 @@ $(document).ready(function(){
 
 // VIEW FUNCTIONS
   var qPageView = {
-    toggleCommentFormDisplay: function(e){
-      var commentButton = $(e.target);
-      var commentForm = $(e.target).siblings(".comment-form");
-      commentForm.slideToggle();
-      if (commentForm.css("display") === "none")
-        commentButton.html("Hide comment form");
+    toggleAnswerCommentFormDisplay: function(e){
+      var answerCommentButton = $(e.target);
+      var answerCommentForm = $(e.target).siblings(".answer-comment-form");
+      answerCommentForm.slideToggle();
+      if (answerCommentForm.css("display") === "none")
+        answerCommentButton.html("Hide comment form");
       else
-        commentButton.html("Comment");
+        answerCommentButton.html("Comment");
+    },
+
+    toggleQuestionCommentFormDisplay: function(e){
+      var questionCommentButton = $(e.target);
+      var questionCommentForm = $(".question-comment-form");
+      questionCommentForm.slideToggle();
+      if (questionCommentForm.css("display") === "none")
+        questionCommentButton.html("Hide comment form");
+      else
+        questionCommentButton.html("Comment");
     },
 
     toggleCommentsListDisplay:function(e){
       $(e.target).siblings(".comments-list").slideToggle();
-      if ($(e.target).html() == "Show comments")
+      if ($(e.target).html() === "Show comments")
         $(e.target).html("Hide comments");
       else
         $(e.target).html("Show comments");
