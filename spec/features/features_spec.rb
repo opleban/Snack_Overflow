@@ -50,13 +50,14 @@ feature "homepage" do
   end
 end
 
-feature "homepage" do 
-  scenario "lists any recent questions when user clicks 'browse questions'" do 
-    let!(:question) {FactoryGirl.create :question}
-    visit root_path 
-    click_link "Browse Questions"
+# feature "homepage" do 
+#   scenario "lists any recent questions when user clicks 'browse questions'" do 
+#     let(:user) {FactoryGirl.create :user}
+#     let!(:question) {FactoryGirl.create :question}
+#     visit root_path 
+#     click_link "Browse Questions"
 
-    expect(page).to have_content question.title, question.body
-  end
-end
+#     expect(page).to have_content question.title, question.body
+#   end
+# end
 
