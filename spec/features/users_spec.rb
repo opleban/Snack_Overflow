@@ -1,11 +1,12 @@
 require_relative '../rails_helper'
 
-describe "Users pages" do 
+describe "Users pages", :js => true do 
 
   context "user profile page" do 
     let(:user) { FactoryGirl.create :user }
     before { visit user_path(user) }
 
+    # puts page.inspect
     it { should have_content(user.name)}
     it { should have_title(user.name) }
   end

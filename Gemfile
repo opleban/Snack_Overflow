@@ -28,14 +28,14 @@ gem 'spring',        group: :development
 
 gem 'rails_12factor', group: :production
 
-gem 'faker'
-gem 'factory_girl_rails'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
 gem 'unicorn'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -45,7 +45,18 @@ gem 'unicorn'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
-  gem "shoulda-matchers"
+
 end
 
 ruby '2.0.0'
+
+
+group :test do 
+  # Use capybara for feature tests
+  gem "capybara"
+  gem "shoulda-matchers"
+  gem 'faker'
+  gem 'factory_girl_rails'
+  gem 'selenium-webdriver'
+end
+
