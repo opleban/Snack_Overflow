@@ -47,6 +47,7 @@ $(document).ready(function(){
         container = ".answer-comments-list-"+ comment_data.comment.feedback_id
       $(container).append(comment);
     },
+
     clearCommentFormText: function(eventTarget){
       eventTarget.siblings("textarea").val("")
     }
@@ -55,13 +56,14 @@ $(document).ready(function(){
 //CONTROLLER FUNCTIONS
   qPageController = {
     bindEvents: function(){
-      this.addCommentButtonEventListener();
+      this.addQuestionCommentButtonEventListener();
+      this.addAnswerCommentButtonEventListener();
       this.addCommentSubmitEventListener();
       this.addCommentViewEventListener();
     },
 
-    addCommentButtonEventListener: function(){
-      $(".comment-button").on("click", qPageView.toggleCommentFormDisplay);
+    addAnswerCommentButtonEventListener: function(){
+      $(".comment-button").on("click", qPageView.toggleAnswerCommentFormDisplay);
     },
 
     addCommentSubmitEventListener: function(){
