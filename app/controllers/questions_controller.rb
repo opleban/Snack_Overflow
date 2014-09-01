@@ -19,8 +19,21 @@ class QuestionsController < ApplicationController
     @sorted_questions = Question.all.order(:score)
   end
 
+  def update
+    @question = Question.find(params[:id])
+    if params[:voteType] == "up"
+      @question.score += 1
+    else
+      @question.score -= 1
+    end
+    @question.save
+    respond_to do |format|
+      format.json { render json: {score:@question.score}, status: :ok}
+    end
+  end
+
   def question_params
-    params.require(:question).permit(:title,:body,:score,:user_id,:id)
+    params.require(:question).permit(:title,:body,:score,:user_id,:id,:score)
   end
 
 end
