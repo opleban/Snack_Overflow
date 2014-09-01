@@ -14,4 +14,5 @@
  *= require_self
  *= require "users"
  *= require "welcome"
+ *= require "questions_show"
  */

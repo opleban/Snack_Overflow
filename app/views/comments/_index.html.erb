@@ -1,8 +1,6 @@
 <div class= "comments">
 
-  <% if session[:user_id] %>
-    <button type="button" class="btn btn-primary btn-xs expand-comments-list">Show comments</button>
-  <% end %>
+  <button type="button" class="btn btn-primary btn-xs expand-comments-list">Show comments</button>
 
   <ol class="<%= post_type %>-comments-list-<%= post.id %> comments-list">
     <% post.comments.each do |comment| %>
