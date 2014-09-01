@@ -25,3 +25,11 @@ body {
 }
 
 
+.search-bar {
+	margin-top: 6px;
+	margin-left: -6px;
+}
+
+.search-bar a {
+	padding: 6px;
+}
