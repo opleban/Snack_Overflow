@@ -28,7 +28,6 @@ QuestionShowController.prototype = {
       url: $(location).attr('href')+"/answers",
       dataType: 'HTML'
     }).done(function(partial) {
-      console.log("success")
       $(".answer-list").html(partial)
       qPageController.bindEvents()
     })

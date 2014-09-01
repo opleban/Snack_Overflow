@@ -21,14 +21,11 @@ $(document).ready(function(){
     toggleQuestionCommentFormDisplay: function(e){
       var questionCommentButton = $(e.target);
       var questionCommentForm = $(".question-comment-form");
-      if (questionCommentForm.css("display") === "none"){
-        questionCommentForm.slideToggle();
+      questionCommentForm.slideToggle();
+      if (questionCommentForm.css("display") === "none")
         questionCommentButton.html("Hide comment form");
-      }
-      else{
-        questionCommentForm.slideToggle();
+      else
         questionCommentButton.html("Comment");
-      }
     },
 
     toggleCommentsListDisplay:function(e){
@@ -99,7 +96,7 @@ $(document).ready(function(){
   }
 };
 
-  qPageController.bindEvents();
+  // qPageController.bindEvents();
 });
 
 
