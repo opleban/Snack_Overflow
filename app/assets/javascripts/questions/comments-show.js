@@ -70,6 +70,7 @@ $(document).ready(function(){
       this.addAnswerCommentButtonEventListener();
       this.addCommentSubmitEventListener();
       this.addCommentViewEventListener();
+      this.addVoteArrowsEventListener();
     },
 
     unbindAll: function(){
@@ -77,6 +78,8 @@ $(document).ready(function(){
       $(".new_comment input[type='submit']").off();
       $(".expand-comments-list").off();
       $(".question-comment-button").off();
+      $(".up-vote").off();
+      $(".down-vote").off();
     },
 
     addAnswerCommentButtonEventListener: function(){
