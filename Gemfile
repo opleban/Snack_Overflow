@@ -35,7 +35,7 @@ gem 'rails_12factor', group: :production
 
 # Use unicorn as the app server
 gem 'unicorn'
-  em 'faker'
+gem 'faker'
 gem 'factory_girl_rails'
 
 # Use Capistrano for deployment

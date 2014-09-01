@@ -1,4 +1,5 @@
 require_relative '../rails_helper'
+require_relative '../factories'
 
 feature "homepage" do
   scenario "displays 'Welcome'" do
