@@ -1,11 +1,14 @@
 <div class="header">
   <h1><%= @question.title %></h1>
+  <h3><%= @question.body %></h3>
   <div class= "question-comments">
     <% if session[:user_id] %>
-    <div class="comment-form">
+      <div class="comment-form">
         <%= render partial:'comments/new.html.erb', locals:{post_type:"question", post:@question} %>
       </div>
       <button class="comment-button">Comment</button>
+    <% else %>
+        <%= link_to("Sign In to post a Comment", {controller: "sessions", action: "new"}) %>
     <% end %>
 
     <button class="expand-comments-list">Show comments</button>
@@ -15,19 +18,9 @@
       <% end %>
     </ol>
   </div class="question-comments">
-
-<div class="content">
-  <div class="votes">
-  </div>
 </div>
 
-
 <ol class="answer-list">
-  <% @question.answers.each do |answer| %>
-  <li class="answer-<%= answer.id %>"> <%= answer.body %>
-    <%= render partial:'comments/index.html.erb', locals:{post_type:"answer", post:answer} %>
-  </li>
-  <% end %>
 </ol>
 
 <div class="answer_form">

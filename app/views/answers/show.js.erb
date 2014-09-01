@@ -1,0 +1,6 @@
+// $('.ajax').html("<%= escape_javascript(render(:partial => 'answers/show')).html_safe %>");
+
+// $('.ajax').append("<%= escape_javascript(render partial: 'answers/show.html.erb') %>");
+
+
+$('.ajax').html("<%= escape_javascript(render :partial => 'show', :locals => { :question => @question } ) %>");

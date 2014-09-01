@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @questions = Question.all
+    @sorted_questions = Question.all.order(:score)
   end
 
 end
