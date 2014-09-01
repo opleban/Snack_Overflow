@@ -1,13 +1,5 @@
 <div class = "edit_form" style="display:none;">
 
-  // <% if @error %>
-  //   <div id="error_explanation">
-  //     <ul>
-  //       <li><%= @error %></li>
-  //     </ul>
-  //   </div>
-  // <% end %>
-
   <% provide(:title, 'Edit User Info') %>
   <h1>Edit User Info</h1>
 
@@ -21,7 +13,7 @@
     <%= f.text_field :username %>
 
     <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.email_field :email %>
 
     <%= f.label :password %>
     <%= f.password_field :password %>
@@ -39,7 +31,9 @@
       $('.edit_form').css({
       'display': 'none'});
       $(".current_user h1").text(jsonResponse.name);
-      $(".current_user h3").text(jsonResponse.email);
+      $(".current_user h3:eq(0)").text(jsonResponse.username);
+
+      $(".current_user h3:eq(1)").text(jsonResponse.email);
     });
     e.preventDefault();
   });
