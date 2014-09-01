@@ -1,8 +1,10 @@
 <div class="header">
-  <div class="vote-arrows" id="<%= @question.id %>">
-    <button type="button" class="btn btn-primary btn-md up-vote"><i class="glyphicon glyphicon-arrow-up"></i></button>
-    <button type="button" class="btn btn-primary btn-md down-vote"><i class= "glyphicon glyphicon-arrow-down"></i></button>
-  </div>
+  <% if session[:user_id] %>
+    <div class="vote-arrows" id="<%= @question.id %>">
+      <button type="button" class="btn btn-primary btn-md up-vote"><i class="glyphicon glyphicon-arrow-up"></i></button>
+      <button type="button" class="btn btn-primary btn-md down-vote"><i class= "glyphicon glyphicon-arrow-down"></i></button>
+    </div>
+  <% end %>
   <div class="votes">
     <h1 class="question-score"><%= @question.score %></h1>
   </div>
