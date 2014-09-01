@@ -1,0 +1,12 @@
+.box{
+  display: inline-block;
+  background:rgba(255,255,255, 0.4);
+  border: .5em solid;
+  margin: 1em;
+}
+
+.space{
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+}

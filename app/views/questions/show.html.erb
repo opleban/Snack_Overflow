@@ -1,16 +1,27 @@
 <div class="header">
   <h1><%= @question.title %></h1>
+  <h3><%= @question.body %></h3>
+  <div class= "question-comments">
+    <% if session[:user_id] %>
+      <div class="comment-form">
+        <%= render partial:'comments/new.html.erb', locals:{post_type:"question", post:@question} %>
+      </div>
+      <button class="comment-button">Comment</button>
+    <% else %>
+        <%= link_to("Sign In to post a Comment", {controller: "sessions", action: "new"}) %>
+    <% end %>
+
+    <button class="expand-comments-list">Show comments</button>
+    <ol class="question-comments-list comments-list">
+      <% @question.comments.each do |comment| %>
+        <%= render partial:'comments/show.html.erb', locals:{comment:comment} %>
+      <% end %>
+    </ol>
+  </div class="question-comments">
 </div>
 
-<div class="content">
-  <div class="votes">
-  </div>
-
-</div>
-
-
-<div class="answer_list">
-</div>
+<ol class="answer-list">
+</ol>
 
 <div class="answer_form">
   <% if session[:user_id] %>
@@ -19,3 +30,17 @@
     <%= link_to("Sign In to answer this Question", {controller: "sessions", action: "new"}) %>
   <% end %>
 </div>
+
+<script type="text/template" id="comment-template">
+<li class="comment-item">
+  <div class="comment-body">
+    {{= it.comment.body }}
+  </div>
+  <div class="comment-author">
+    {{= it.user.username }}
+  </div>
+  <div class="comment-date">
+    {{= it.comment.created_at }}
+  </div>
+</li>
+</script>

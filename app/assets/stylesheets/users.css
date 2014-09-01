@@ -1,5 +1,11 @@
 .users {
-	display: inline-block;
+  height: 15em;
+  width: 18em;
+  display: inline-block;
+  padding-left: 1em;
+  background:rgba(255,255,255, 0.4);
+  border: .5em solid;
+  margin: 1em;
 }
 
 .user_questions_outer{

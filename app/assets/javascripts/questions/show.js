@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 if (window.location.href.match(/questions/) != null) {
   document.addEventListener('DOMContentLoaded', function(){
     console.log("inside addEventListener")
@@ -81,19 +82,15 @@ QuestionList.prototype = {
     for(i=0;i<this.all.length;i++) {
       if(questionList[i] == id) {return questionList[i]}
     }
+=======
+$(document).on('ready page:load', function(){
+  if (window.location.href.match(/\/questions\//) != null) {
+    controller = new QuestionShowController()
+    controller.renderAnswerList()
+    $(".submit_button").on('click', controller.renderNewAnswerList)
+>>>>>>> 9a81d1b09017138a23f4f60c8837343983554fe7
   }
-}
-
-//QUESTION MODEL
-function Question(JSONObject) {
-  this.id = JSONObject.id;
-  this.title = JSONObject.title
-  this.body = JSONObject.body;
-  this.score = JSONObject.score;
-  this.user_id = JSONObject.user_id;
-  this.answerList = [];
-  this.commentList = [];
-}
+})
 
 //ANSWER MODEL
 function Answer(JSONObject) {
@@ -106,7 +103,7 @@ function Answer(JSONObject) {
 }
 
 
-//ANSWER CONTROLLER
+//CONTROLLER+VIEW TO POPULATE ANSWERS W/ ATTACHED COMMENTS
 function QuestionShowController() {
   this.question_id = $(location).attr('href').match(/^d/);
   this.question = questionList.findByID(this.question_id);
@@ -114,16 +111,31 @@ function QuestionShowController() {
 
 QuestionShowController.prototype = {
 
+<<<<<<< HEAD
   bindNewAnswerListener: function(event){
     $(".submit_button").on('click', questionShowController.renderNewAnswerList)
+=======
+  renderAnswerList: function() {
+    $.ajax({
+      type: "GET",
+      url: $(location).attr('href')+"/answers",
+      dataType: 'HTML'
+    }).done(function(partial) {
+      console.log("success")
+      $(".answer-list").html(partial)
+      qPageController.bindEvents()
+    })
+>>>>>>> 9a81d1b09017138a23f4f60c8837343983554fe7
   },
 
   renderNewAnswerList: function(event) {
+    console.log("insider renderNewAnswerList")
     if(event) {event.preventDefault();}
     $.ajax({
       type: "POST",
       url: $(this).parents("form").attr('action'),
       data: $(this).parents("form").serialize(),
+<<<<<<< HEAD
       dataType: 'JSON'
     }).done(function(answerJsonObject) {
       questionShowController.addAnswerToAnswerList(answerJsonObject)
@@ -172,6 +184,14 @@ QuestionShowController.prototype = {
                     "</div>"
                   ]
     return answerContent.join("")
+=======
+      dataType: 'HTML'
+    }).done(function(partial) {
+      console.log("success")
+      $(".answer-list").html(partial)
+      qPageController.bindEvents()
+    })
+>>>>>>> 9a81d1b09017138a23f4f60c8837343983554fe7
   }
 }
 
