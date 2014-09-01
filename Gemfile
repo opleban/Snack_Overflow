@@ -35,7 +35,8 @@ gem 'rails_12factor', group: :production
 
 # Use unicorn as the app server
 gem 'unicorn'
-
+  em 'faker'
+gem 'factory_girl_rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -55,8 +56,7 @@ group :test do
   # Use capybara for feature tests
   gem "capybara"
   gem "shoulda-matchers"
-  gem 'faker'
-  gem 'factory_girl_rails'
   gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
