@@ -1,7 +1,15 @@
 <div class="header">
-
-  <h1><%= @question.title %></h1>
-
+  <div class="vote-arrows" id="<%= @question.id %>">
+    <button type="button" class="btn btn-primary btn-md up-vote"><i class="glyphicon glyphicon-arrow-up"></i></button>
+    <button type="button" class="btn btn-primary btn-md down-vote"><i class= "glyphicon glyphicon-arrow-down"></i></button>
+  </div>
+  <div class="votes">
+    <h1 class="question-score"><%= @question.score %></h1>
+  </div>
+  <div class="question-title">
+    <h1><%= @question.title %></h1>
+  </div>
+</div>
   <div class= "question-comments">
 
     <button type="button" class="btn btn-primary btn-xs expand-comments-list">Show comments</button>
@@ -20,11 +28,6 @@
     <% end %>
 
   </div>
-
-<div class="content">
-  <div class="votes">
-  </div>
-</div>
 
 <h3> Answers </h3>
 <ol class="answer-list">
