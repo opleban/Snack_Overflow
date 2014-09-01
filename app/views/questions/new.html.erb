@@ -1,9 +1,11 @@
 <h1>Ask a Question</h1>
 
-<%= form_tag("/questions", method:"post") do %>
-  <%= label_tag(:title, "Title:") %>
-  <%= text_field_tag(:title) %>
-  <%= label_tag(:content, "Content:") %>
-  <%= text_field_tag(:content) %>
-  <%= submit_tag("Submit") %>
+<%= form_for :question, url: {controller: "questions", action: "create"} do |f| %>
+  Title: <%= f.text_field :title, size: "60x1" %>
+  <br>
+  <br>
+  Content: <%= f.text_area :body, size: "60x12" %>
+  <br>
+  <br>
+  <%= f.submit "Ask Question" %>
 <% end %>
