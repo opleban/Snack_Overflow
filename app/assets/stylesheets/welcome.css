@@ -19,6 +19,10 @@ body {
   background-color: rgba(210, 210, 210,0.6);
 }
 
+.question-item:hover{
+	background-color: #c3dcee;
+}
+
 .question-category{
   display: inline-block;
   margin:0.5em;
