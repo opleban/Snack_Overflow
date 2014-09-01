@@ -1,0 +1,15 @@
+    <h3>There are <%= @question.answers.count %> answers.</h3>
+    <% @question.answers.order(:score).each do |answer| %>
+      <li class="answer-item">
+        <div class="answer-body">
+          <%= answer.body %>
+        </div>
+        <div class="answer-author">
+          <%= answer.user.username %>
+        </div>
+        <div class="answer-date">
+          <%= format_time(answer.created_at) %>
+        </div>
+      </li>
+      <%= render partial:'comments/index.html.erb', locals:{post_type:"answer", post: answer} %>
+    <% end %>
