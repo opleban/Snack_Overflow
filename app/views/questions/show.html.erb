@@ -1,33 +1,45 @@
 <div class="header">
-  <h1><%= @question.title %></h1>
+  <% if session[:user_id] %>
+    <div class="vote-arrows" id="<%= @question.id %>">
+      <button type="button" class="btn btn-primary btn-md up-vote"><i class="glyphicon glyphicon-arrow-up"></i></button>
+      <button type="button" class="btn btn-primary btn-md down-vote"><i class= "glyphicon glyphicon-arrow-down"></i></button>
+    </div>
+  <% end %>
+  <div class="votes">
+    <h1 class="question-score"><%= @question.score %></h1>
+  </div>
+  <div class="question-title">
+    <h1><%= @question.title %></h1>
+  </div>
+</div>
   <div class= "question-comments">
-    <% if session[:user_id] %>
-    <div class="comment-form">
-        <%= render partial:'comments/new.html.erb', locals:{post_type:"question", post:@question} %>
-      </div>
-      <button class="comment-button">Comment</button>
-    <% end %>
 
-    <button class="expand-comments-list">Show comments</button>
+    <button type="button" class="btn btn-primary btn-xs expand-comments-list">Show comments</button>
+
     <ol class="question-comments-list comments-list">
       <% @question.comments.each do |comment| %>
         <%= render partial:'comments/show.html.erb', locals:{comment:comment} %>
       <% end %>
     </ol>
-  </div class="question-comments">
 
-<div class="content">
-  <div class="votes">
+    <% if session[:user_id] %>
+      <button type="button" class="btn btn-primary btn-xs question-comment-button">Comment</button>
+      <div class="question-comment-form">
+        <%= render partial:'comments/new.html.erb', locals:{post_type:"question", post:@question} %>
+      </div>
+    <% end %>
+
   </div>
-</div>
 
-
+<h3> Answers </h3>
 <ol class="answer-list">
+
   <% @question.answers.each do |answer| %>
-  <li class="answer-<%= answer.id %>"> <%= answer.body %>
+  <li class="answer-<%= answer.id %> answer-item"> <%= answer.body %>
     <%= render partial:'comments/index.html.erb', locals:{post_type:"answer", post:answer} %>
   </li>
   <% end %>
+
 </ol>
 
 <div class="answer_form">

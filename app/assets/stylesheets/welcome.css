@@ -24,4 +24,7 @@ body {
   margin:0.5em;
 }
 
+.question-item:hover{
+  background-color: #c3dcee;
+}
 

@@ -14,5 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-//= require ./../../../vendor/assets/javascripts/mustache.js
-// = require_tree .
+//= require "mustache.js"
+//= require_tree .
+//= require "doT.js"
+//= require "questions/show.js"
+//= require "questions/comments-show.js"

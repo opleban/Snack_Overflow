@@ -8,8 +8,13 @@ class Question < ActiveRecord::Base
 	validates :body, :presence => true
 
   def self.top
-    Question.order(:score).take(10)
+    Question.order(:score).last(10).reverse
   end
+
+  def self.recent
+    Question.order(:created_at).last(10).reverse
+  end
+
 
   def show
   end
