@@ -25,13 +25,6 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    # if @user.password == params[:user][:password] && @user.update_attributes(user_params) 
-    #   flash[:success] = 'User successfuly updated.'
-    #   redirect_to @user
-    # else
-    #   flash.now[:error] = 'Invalid password. Failed to update.'
-    #   render 'show'
-    # end
     respond_to do |format|
       if @user.password == params[:user][:password] && @user.update_attributes(user_params) 
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
