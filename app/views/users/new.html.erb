@@ -4,17 +4,30 @@
 <%= form_for(@user) do |f| %>
    <%= render 'shared/error_messages' %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<ul>
+  <li>
+    <%= f.label :name %> <br>
+    <%= f.text_field :name %>
+  </li>
 
-  <%= f.label :username %>
-  <%= f.text_field :username %>
+  <li>
+    <%= f.label :username %> <br>
+    <%= f.text_field :username %>
+  </li>
 
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+  <li>
+    <%= f.label :email %> <br>
+    <%= f.text_field :email %>
+  </li>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <li>
+    <%= f.label :password %> <br>
+    <%= f.password_field :password %>
+  </li>
 
-  <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+  <li>
+    <br>
+    <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+  </li>
+</ul>
 <% end %>
