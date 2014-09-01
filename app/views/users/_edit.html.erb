@@ -31,7 +31,9 @@
       $('.edit_form').css({
       'display': 'none'});
       $(".current_user h1").text(jsonResponse.name);
-      $(".current_user h3").text(jsonResponse.email);
+      $(".current_user h3:eq(0)").text(jsonResponse.username);
+
+      $(".current_user h3:eq(1)").text(jsonResponse.email);
     });
     e.preventDefault();
   });
