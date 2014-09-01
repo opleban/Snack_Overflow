@@ -8,7 +8,7 @@
           <%= answer.user.username %>
         </div>
         <div class="answer-date">
-          <%= answer.created_at %>
+          <%= format_time(answer.created_at) %>
         </div>
       </li>
       <%= render partial:'comments/index.html.erb', locals:{post_type:"answer", post: answer} %>
