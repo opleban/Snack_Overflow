@@ -1,6 +1,8 @@
 <header>
   <div class="box space">
-    <h3> Snack Overflow </h4>
+    <div class='header-title'>
+      <h3> Snack Overflow </h4>
+      </div>
       <div class='header-links'>
         <%=
         link_to_if(session[:user_id].nil?, "Sign In", { controller: "sessions", action: "new" }) do
