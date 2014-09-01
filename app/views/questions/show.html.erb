@@ -1,34 +1,53 @@
 <div class="header">
   <h1><%= @question.title %></h1>
-  <%= render partial:'comments/new.html.erb', locals:{post_type:"question", post:@question} %>
-</div>
-  <ul class=comments_list>
-    <h4>Comments</h4>
-    <% @question.comments.each do |comment| %>
-      <li><%= comment.body %></li>
+  <div class= "question-comments">
+    <% if session[:user_id] %>
+    <div class="comment-form">
+        <%= render partial:'comments/new.html.erb', locals:{post_type:"question", post:@question} %>
+      </div>
+      <button class="comment-button">Comment</button>
     <% end %>
-  </ul>
+
+    <button class="expand-comments-list">Show comments</button>
+    <ol class="question-comments-list comments-list">
+      <% @question.comments.each do |comment| %>
+        <%= render partial:'comments/show.html.erb', locals:{comment:comment} %>
+      <% end %>
+    </ol>
+  </div class="question-comments">
 
 <div class="content">
   <div class="votes">
   </div>
-
 </div>
 
 
-<h2>There are <%= @question.answers.count %> answers</h2>
-  <ul>
-    <% @question.answers.each do |answer| %>
-      <li> <%= answer.body %>
-        <ul>
-          <% answer.comments.each do |comment| %>
-            <li><%= comment.body %></li>
-          <% end %>
-        </ul>
-        <%= render partial:'comments/new.html.erb', locals:{post_type:"answer", post:answer} %>
-      </li>
-    <% end %>
-  </ul>
+<ol class="answer-list">
+  <% @question.answers.each do |answer| %>
+  <li class="answer-<%= answer.id %>"> <%= answer.body %>
+    <%= render partial:'comments/index.html.erb', locals:{post_type:"answer", post:answer} %>
+  </li>
+  <% end %>
+</ol>
 
-  <%= render 'answers/new.html.erb' %>
+<div class="answer_form">
+  <% if session[:user_id] %>
+    <%= render :partial => 'answers/new.html.erb', :locals => {:question => @question } %>
+  <% else %>
+    <%= link_to("Sign In to answer this Question", {controller: "sessions", action: "new"}) %>
+  <% end %>
 </div>
+
+<script type="text/template" id="comment-template">
+<li class="comment-item">
+  <div class="comment-body">
+    {{= it.comment.body }}
+  </div>
+  <div class="comment-author">
+    {{= it.user.username }}
+  </div>
+  <div class="comment-date">
+    {{= it.comment.created_at }}
+  </div>
+</li>
+</script>
