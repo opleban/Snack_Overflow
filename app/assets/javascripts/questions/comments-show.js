@@ -8,19 +8,29 @@ $(document).ready(function(){
 
 // VIEW FUNCTIONS
   var qPageView = {
-    toggleCommentFormDisplay: function(e){
-      var commentButton = $(e.target);
-      var commentForm = $(e.target).siblings(".comment-form");
-      commentForm.slideToggle();
-      if (commentForm.css("display") === "none")
-        commentButton.html("Hide comment form");
+    toggleAnswerCommentFormDisplay: function(e){
+      var answerCommentButton = $(e.target);
+      var answerCommentForm = $(e.target).siblings(".answer-comment-form");
+      answerCommentForm.slideToggle();
+      if (answerCommentForm.css("display") === "none")
+        answerCommentButton.html("Hide comment form");
       else
-        commentButton.html("Comment");
+        answerCommentButton.html("Comment");
+    },
+
+    toggleQuestionCommentFormDisplay: function(e){
+      var questionCommentButton = $(e.target);
+      var questionCommentForm = $(".question-comment-form");
+      questionCommentForm.slideToggle();
+      if (questionCommentForm.css("display") === "none")
+        questionCommentButton.html("Hide comment form");
+      else
+        questionCommentButton.html("Comment");
     },
 
     toggleCommentsListDisplay:function(e){
       $(e.target).siblings(".comments-list").slideToggle();
-      if ($(e.target).html() == "Show comments")
+      if ($(e.target).html() === "Show comments")
         $(e.target).html("Hide comments");
       else
         $(e.target).html("Show comments");
@@ -37,6 +47,7 @@ $(document).ready(function(){
         container = ".answer-comments-list-"+ comment_data.comment.feedback_id
       $(container).append(comment);
     },
+
     clearCommentFormText: function(eventTarget){
       eventTarget.siblings("textarea").val("")
     }
@@ -45,13 +56,14 @@ $(document).ready(function(){
 //CONTROLLER FUNCTIONS
   qPageController = {
     bindEvents: function(){
-      this.addCommentButtonEventListener();
+      this.addQuestionCommentButtonEventListener();
+      this.addAnswerCommentButtonEventListener();
       this.addCommentSubmitEventListener();
       this.addCommentViewEventListener();
     },
 
-    addCommentButtonEventListener: function(){
-      $(".comment-button").on("click", qPageView.toggleCommentFormDisplay);
+    addAnswerCommentButtonEventListener: function(){
+      $(".comment-button").on("click", qPageView.toggleAnswerCommentFormDisplay);
     },
 
     addCommentSubmitEventListener: function(){
@@ -60,6 +72,10 @@ $(document).ready(function(){
 
     addCommentViewEventListener: function(){
       $(".expand-comments-list").on("click", qPageView.toggleCommentsListDisplay);
+    },
+
+    addQuestionCommentButtonEventListener: function(){
+      $(".question-comment-button").on("click", qPageView.toggleQuestionCommentFormDisplay);
     },
 
 // MAKES AJAX POST REQUEST THEN CALLS VIEW FUNCTION TO RENDER THE COMMENT

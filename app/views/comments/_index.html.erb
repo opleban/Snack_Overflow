@@ -1,16 +1,21 @@
-<div class= "<%= post_type %>-<%= post.id %>-comments">
-  <ol class="<%= post_type %>-comments-list-<%= post.id %>">
-    <button class="expand-comments-list">Show comments</button>
-    <div class="comments-list">
-      <% post.comments.each do |comment| %>
-        <%= render partial:'comments/show.html.erb', locals:{comment:comment} %>
-      <% end %>
-    </div>
-  </ol>
+<div class= "comments">
+
   <% if session[:user_id] %>
-    <button class="comment-button">Comment</button>
-    <div class="comment-form">
+    <button type="button" class="btn btn-primary btn-xs expand-comments-list">Show comments</button>
+  <% end %>
+
+  <ol class="<%= post_type %>-comments-list-<%= post.id %> comments-list">
+    <% post.comments.each do |comment| %>
+      <%= render partial:'comments/show.html.erb', locals:{comment:comment} %>
+    <% end %>
+  </ol>
+
+  <% if session[:user_id] %>
+    <button type="button" class="btn btn-primary btn-xs comment-button">Comment</button>
+    <div class="answer-comment-form">
       <%= render partial:'comments/new.html.erb', locals:{post_type:post_type, post:post} %>
     </div>
   <% end %>
+
 </div>
+
