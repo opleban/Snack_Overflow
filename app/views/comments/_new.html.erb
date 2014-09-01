@@ -2,5 +2,5 @@
   <%= f.label :New_comment %>
   <%= f.text_area :body, class: "form-control", placeholder: "Enter a comment here.", size:"5x1"%>
   <%= hidden_field_tag 'post_type', post_type  %>
-  <%= f.submit value= "Post comment" %>
+  <%= f.submit value="Post comment", class:"btn btn-primary btn-xs" %>
 <% end %>
