@@ -50,16 +50,16 @@ ActiveRecord::Schema.define(version: 20140830210422) do
   end
 
   create_table "tags", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",       limit: 50
-    t.string   "username",   limit: 50
-    t.string   "email",      limit: 50
-    t.string   "password",   limit: 50
+    t.string   "name",       limit: 50, null: false
+    t.string   "username",   limit: 50, null: false
+    t.string   "email",      limit: 50, null: false
+    t.string   "password",   limit: 50, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

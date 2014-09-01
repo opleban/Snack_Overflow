@@ -22,16 +22,18 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-  
-  def edit
-    @user = User.find(params[:id])
-  end
 
   def update
     @user = User.find(params[:id])
-    @user.update_attributes(user_params)
-
-    redirect_to @user
+    respond_to do |format|
+      if @user.password == params[:user][:password] && @user.update_attributes(user_params) 
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render json: @user, notice: 'User updated.' }
+      else
+        format.html { render action: "show" }
+        format.json { render json: {:error => "Invalid Password"} }
+      end
+    end
   end
 
   private 
