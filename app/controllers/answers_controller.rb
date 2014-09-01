@@ -24,12 +24,9 @@ class AnswersController < ApplicationController
     @question.answers << @answer
     @user.answers << @answer
 
-    #Prepare sorted answer list to be returned in response
-    @sorted_answers = @question.answers.order(:score)
-
     respond_to do |format|
       format.html { redirect_to @question, notice: 'Answer was successfully created.' }
-      format.json { render json: @sorted_answers }
+      format.json { render json: @answer }
     end
   end
 

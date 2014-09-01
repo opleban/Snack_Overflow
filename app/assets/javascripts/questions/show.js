@@ -1,17 +1,84 @@
-document.addEventListener('DOMContentLoaded', function(){
-  controller = new QuestionShowController()
-  controller.renderAnswerList()
-  $(".submit_button").on('click', controller.renderNewAnswerList)
-});
+if (window.location.href.match(/questions/) != null) {
+  document.addEventListener('DOMContentLoaded', function(){
+    console.log("inside addEventListener")
+    questionList = new QuestionList()
+    questionIndexController = new QuestionIndexController()
+    questionIndexController.renderQuestionList()
+  });
+}
+
+function QuestionIndexController() {}
+
+QuestionIndexController.prototype = {
+  renderQuestionList: function() {
+    $.ajax({
+      type: "GET",
+      url: "/questions",
+      dataType: 'JSON'
+    }).done(function(questionJsonObjectsCollection) {
+      console.log("success")
+      this.resetQuestionList()
+      this.populateQuestionList(questionJsonObjectsCollection)
+      this.displayQuestionList()
+    }.bind(this))
+  },
+
+  resetQuestionList: function() {
+    questionList = []
+    $(".question_list").empty()
+  },
+
+  populateQuestionList: function(questionCollection) {
+    for(i=0;i<questionCollection.length;i++) {
+      questionJSObject = new Question(questionCollection[i])
+      questionList.push(questionJSObject)
+    }
+  },
+
+  displayQuestionList: function() {
+    $(".question_list").append('<h2>There are '+questionList.length+' questions</h2>')
+    for(i=0;i<questionList.length;i++) {
+      questionDiv = this.formatQuestionDiv(questionList[i])
+      $(".question_list").append(questionDiv)
+    }
+  },
+
+  formatQuestionDiv: function(question){
+    var thisQuestion = {
+      "title": question.title,
+      "body": question.body,
+      "score": question.score,
+    }
+    var questionMainTemplate = "<div class='question_main'>{{title}} {{body}} </div>";
+    var questionMainHtml = Mustache.to_html(questionMainTemplate, thisQuestion);
+    var questionLeftTemplate = "<div class='question_left'>{{score}}</div>";
+    var questionLeftHtml = Mustache.to_html(questionLeftTemplate, thisQuestion);
+    var questionContent = [
+                    "<div class='question-div'>",
+                    questionMainHtml,
+                    questionLeftHtml,
+                    "</div>"
+                  ]
+    return questionContent.join("")
+  }
+}
+
+if (window.location.href.match(/\/questions\//) != null) {
+  document.addEventListener('DOMContentLoaded', function(){
+    questionShowController = new QuestionShowController()
+    questionShowController.displayAnswerList()
+    questionShowController.bindNewAnswerListener()
+  });
+}
 
 //QUESTION LIST MODEL
 function QuestionList() {
-  this.questionList = [];
+  this.all = [];
 }
 
 QuestionList.prototype = {
   findByID: function(id) {
-    for(i=0;i<this.questionList.length;i++) {
+    for(i=0;i<this.all.length;i++) {
       if(questionList[i] == id) {return questionList[i]}
     }
   }
@@ -41,21 +108,14 @@ function Answer(JSONObject) {
 
 //ANSWER CONTROLLER
 function QuestionShowController() {
-  this.answerList = []
+  this.question_id = $(location).attr('href').match(/^d/);
+  this.question = questionList.findByID(this.question_id);
 }
 
 QuestionShowController.prototype = {
 
-  renderAnswerList: function(event) {
-    $.ajax({
-      type: "GET",
-      url: $(location).attr('href')+"/answers",
-      dataType: 'JSON'
-    }).done(function(answerJsonObjectsCollection) {
-      controller.resetAnswerList()
-      controller.populateAnswerList(answerJsonObjectsCollection)
-      controller.displayAnswerList()
-    })
+  bindNewAnswerListener: function(event){
+    $(".submit_button").on('click', questionShowController.renderNewAnswerList)
   },
 
   renderNewAnswerList: function(event) {
@@ -65,31 +125,35 @@ QuestionShowController.prototype = {
       url: $(this).parents("form").attr('action'),
       data: $(this).parents("form").serialize(),
       dataType: 'JSON'
-    }).done(function(answerJsonObjectsCollection) {
-      controller.resetAnswerList()
-      controller.populateAnswerList(answerJsonObjectsCollection)
-      controller.displayAnswerList()
+    }).done(function(answerJsonObject) {
+      questionShowController.addAnswerToAnswerList(answerJsonObject)
+      questionShowController.sortAnswerList()
+      questionShowController.displayAnswerList()
     })
   },
 
-  populateAnswerList: function(answerCollection) {
-    for(i=0;i<answerCollection.length;i++) {
-      answerJSObject = new Answer(answerCollection[i])
-      this.answerList.push(answerJSObject)
+  addAnswerToAnswerList: function(answerJsonObject) {
+    var answerJSObject = new Answer(answerJsonObject)
+    this.question.questionList.push(answerJSObject)
+  },
+
+  sortAnswerList: function() {
+    this.question.answerList.sort(compare)
+    function compare(a,b) {
+      if (a.score < b.score)
+         return -1;
+      if (a.score > b.score)
+        return 1;
+      return 0;
     }
   },
 
   displayAnswerList: function() {
-    $(".answer_list").append('<h2>There are '+this.answerList.length+' answers</h2>')
-    for(i=0;i<this.answerList.length;i++) {
-      answerDiv = this.formatAnswerDiv(this.answerList[i])
+    $(".answer_list").append('<h2>There are '+this.question.answerList.length+' answers</h2>')
+    for(i=0;i<this.question.answerList.length;i++) {
+      answerDiv = this.formatAnswerDiv(this.question.answerList[i])
       $(".answer_list").append(answerDiv)
     }
-  },
-
-  resetAnswerList: function() {
-    this.answerList = []
-    $(".answer_list").empty()
   },
 
   formatAnswerDiv: function(answer){
