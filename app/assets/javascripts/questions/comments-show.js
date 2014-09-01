@@ -68,6 +68,13 @@ $(document).ready(function(){
       this.addCommentViewEventListener();
     },
 
+    unbindAll: function(){
+      $(".comment-button").off();
+      $(".new_comment input[type='submit']").off();
+      $(".expand-comments-list").off();
+      $(".question-comment-button").off();
+    },
+
     addAnswerCommentButtonEventListener: function(){
       $(".comment-button").on("click", qPageView.toggleAnswerCommentFormDisplay);
     },

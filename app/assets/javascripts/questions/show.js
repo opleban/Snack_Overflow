@@ -47,7 +47,8 @@ QuestionShowController.prototype = {
     }).done(function(partial) {
       console.log("success")
       $(".answer-list").html(partial)
-      qPageController.bindEvents()
+      qPageController.unbindAll();
+      qPageController.bindEvents();
     })
   }
 }
