@@ -97,6 +97,25 @@ $(document).ready(function(){
     addQuestionCommentButtonEventListener: function(){
       $(".question-comment-button").on("click", qPageView.toggleQuestionCommentFormDisplay);
     },
+    addVoteArrowsEventListener: function(){
+      $(".up-vote").on("click", this.vote);
+      $(".down-vote").on("click", this.vote);
+    },
+
+    vote:function(e){
+      var id = $(e.target).parents(".vote-arrows").attr("id");
+      if ($(e.target).attr("class").match(/up/))
+        var voteType = "up";
+      else
+        voteType = "down";
+      var voteAjax = $.ajax({
+        url:"/questions/"+ id +".json",
+        method:"put",
+        dataType:"json",
+        data: {voteType:voteType, id:id}
+      }).
+      done(qPageView.renderVoteCount);
+    },
 
 // MAKES AJAX POST REQUEST THEN CALLS VIEW FUNCTION TO RENDER THE COMMENT
 // ON THE PAGE USING doT TEMPLATE. SEE questions/views/show.html.erb FOR doT SCRIPT AT THE BOTTOM OF THE PAGE.
