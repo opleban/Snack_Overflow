@@ -1,19 +1,18 @@
 <header>
+  <div class="box space">
+    <h3> Snack Overflow </h4>
+      <%=
+      link_to_if(session[:user_id].nil?, "Sign In", { controller: "sessions", action: "new" }) do
+        link_to "Sign Out", signout_path, method: "delete"
+      end
+      %>
 
-<h4> Snack Overflow </h4>
-  <%=
-   link_to_if(session[:user_id].nil?, "Sign In", { controller: "sessions", action: "new" }) do
+      <%=
+      link_to_if(session[:user_id].nil?, "Sign Up", { controller: "users", action: "new" }) do
 
-      link_to "Sign Out", signout_path, method: "delete" 
-  
-   end
-%>
-
-<%=
-   link_to_if(session[:user_id].nil?, "Sign Up", { controller: "users", action: "new" }) do
-
-     link_to("My Account", { controller: "users", action: "show", id: session[:user_id] })
-   end
-%>
-<%= link_to "Home", root_path %>
-</header>
+       link_to("My Account", { controller: "users", action: "show", id: session[:user_id], class:"header-link" })
+     end
+     %>
+     <%= link_to "Home", root_path %>
+   </div>
+ </header>
