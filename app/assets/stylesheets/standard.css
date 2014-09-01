@@ -11,6 +11,10 @@
   padding-bottom: 1em;
 }
 
+.header-title{
+	text-align: center;
+}
+
 .header-links a{
 	margin-left: -8px;
 	padding: 8px;
