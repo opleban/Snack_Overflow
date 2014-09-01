@@ -35,4 +35,20 @@ button{
   background-color: rgba(200,200,200,0.6);
 }
 
+.votes{
+  display:inline-block;
+  margin-right:1em;
+}
+
+.question-title{
+  display:inline-block;
+}
+
+.vote-arrows{
+  display:inline-block;
+  vertical-align: middle;
+  margin:0 10px 14px 0;
+
+}
+
 
