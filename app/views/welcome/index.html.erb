@@ -12,7 +12,7 @@
 
 <h3>Recent Questions </h3>
 <div class="top-questions">
-  <% Question.recent.each do |question| %>
+  <% Question.top.each do |question| %>
     <ul class="question-item">
       <div class="question_title">
         <li class="question-category">Answers: <%= question.answers.count  %></li>
