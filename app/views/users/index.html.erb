@@ -4,13 +4,13 @@
 	<div class="users">
     <h3>
     <%= gravatar_for user %>
-      <%= user.name %>
+      <%= link_to user.name, user_path(user) %>
     </h3>
-    <p>
+    <h4>
     <%= user.username %>
-    </p>
-    <p>
+    </h4>
+    <p><em>
       <%= user.email %>
-    </p>
+    </em></p>
   	</div>
 <% end %>
