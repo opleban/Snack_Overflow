@@ -1,0 +1,11 @@
+<li class="comment-item">
+  <div class="comment-body">
+    <%= comment.body %>
+  </div>
+  <div class="comment-author">
+    <%= comment.user.username %>
+  </div>
+  <div class="comment-date">
+    <%= format_time(comment.created_at) %>
+  </div>
+</li>
