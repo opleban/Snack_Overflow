@@ -1,4 +1,8 @@
-<% @questions.each do |question| %>
-<h3><%= question.title %></h3>
-<p><%= question.body %></p>
-<% end %>
+<h2>Questions</h2>
+<br>
+<div class="box space">
+  <% @questions.each do |question| %>
+  <h3><%= question.title %></h3>
+  <p><%= question.body %></p>
+  <% end %>
+</div>
