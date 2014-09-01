@@ -1,23 +1,75 @@
-$(".new_answer").on('click', renderNewAnswerList.bind($(this)))
+document.addEventListener('DOMContentLoaded', function(){
+  controller = new QuestionShowController()
+  controller.renderAnswerList()
+  $(".submit_button").on('click', controller.renderNewAnswerList)
+});
 
-function AnswerController() {
-  this.answerList = [];
+//QUESTION LIST MODEL
+function QuestionList() {
+  this.questionList = [];
 }
 
-AnswerController.prototype = {
+QuestionList.prototype = {
+  findByID: function(id) {
+    for(i=0;i<this.questionList.length;i++) {
+      if(questionList[i] == id) {return questionList[i]}
+    }
+  }
+}
 
-  renderNewAnswerList: function() {
-    console.log(this.url)
+//QUESTION MODEL
+function Question(JSONObject) {
+  this.id = JSONObject.id;
+  this.title = JSONObject.title
+  this.body = JSONObject.body;
+  this.score = JSONObject.score;
+  this.user_id = JSONObject.user_id;
+  this.answerList = [];
+  this.commentList = [];
+}
+
+//ANSWER MODEL
+function Answer(JSONObject) {
+    this.id = JSONObject.id;
+    this.body = JSONObject.body;
+    this.score = JSONObject.score;
+    this.user_id = JSONObject.user_id;
+    this.question_id = JSONObject.question_id;
+    this.commentList = [];
+}
+
+
+//ANSWER CONTROLLER
+function QuestionShowController() {
+  this.answerList = []
+}
+
+QuestionShowController.prototype = {
+
+  renderAnswerList: function(event) {
+    $.ajax({
+      type: "GET",
+      url: $(location).attr('href')+"/answers",
+      dataType: 'JSON'
+    }).done(function(answerJsonObjectsCollection) {
+      controller.resetAnswerList()
+      controller.populateAnswerList(answerJsonObjectsCollection)
+      controller.displayAnswerList()
+    })
+  },
+
+  renderNewAnswerList: function(event) {
+    if(event) {event.preventDefault();}
     $.ajax({
       type: "POST",
-      url: this.url,
-      data: this.serialize(),
+      url: $(this).parents("form").attr('action'),
+      data: $(this).parents("form").serialize(),
       dataType: 'JSON'
-    }).done(function(data)) {
-      var answerJsonObjectsCollection = JSON.parse(data)
-      this.populateAnswerList(answerJsonObjectsCollection)
-      this.renderAnswerList()
-    }
+    }).done(function(answerJsonObjectsCollection) {
+      controller.resetAnswerList()
+      controller.populateAnswerList(answerJsonObjectsCollection)
+      controller.displayAnswerList()
+    })
   },
 
   populateAnswerList: function(answerCollection) {
@@ -27,57 +79,37 @@ AnswerController.prototype = {
     }
   },
 
-  renderAnswerList: function() {
+  displayAnswerList: function() {
+    $(".answer_list").append('<h2>There are '+this.answerList.length+' answers</h2>')
     for(i=0;i<this.answerList.length;i++) {
-      answerULElement = formatAnswerULElement(this.answerList[i])
-      $(".answer_list").append(answerULElement)
+      answerDiv = this.formatAnswerDiv(this.answerList[i])
+      $(".answer_list").append(answerDiv)
     }
   },
 
-  formatAnswerULElement: function(answer){
-<ul class="question-item">
-      <div class="question_title">
-        <li class="question-category">Answers: <%= question.answers.count  %></li>
-        <li class="question-category">Score: <%= question.score %></li>
-        <li class="question-category">Question: <%= link_to(question.title, question) %></li>
-      </div>
-      <div>
-        <li class="question-category">Asked By: <%= link_to(question.user.username,question.user) %> </li>
-        <li class="question-category"><%= Time.at(question.created_at).to_time.strftime('%v %r') %></li>
-      </div>
-    </ul>
+  resetAnswerList: function() {
+    this.answerList = []
+    $(".answer_list").empty()
+  },
+
+  formatAnswerDiv: function(answer){
     var thisAnswer = {
       "body": answer.body,
       "score": answer.score,
-      "address": [
-        {"addr": vendor.city},
-        {"addr": vendor.country},
-        {"addr": vendor.postalcode}
-      ]
     }
-
-    var vendorNameTemplate = "<div class='vendor-name'>{{name}}</div>";
-    var vendorNameHtml = Mustache.to_html(vendorNameTemplate, thisVendor);
-    var vendorPriceTemplate = "<div class='vendor-price'>{{price}}</div>";
-    var vendorPriceHtml = Mustache.to_html(vendorPriceTemplate, thisVendor);
-    var addressList = "<ul class='address'>{{#address}}<li class='address-part'>{{addr}}</li>{{/address}}</ul>";
-    var vendorAddressHtml = Mustache.to_html(addressList, thisVendor);
-    var vendorPopupContent = [
-                    "<div class='"+type+"'>",
-                    vendorNameHtml,
-                    vendorPriceHtml,
-                    vendorAddressHtml,
-                    vendor.telephone,
+    var answerMainTemplate = "<div class='answer_main'>{{body}}</div>";
+    var answerMainHtml = Mustache.to_html(answerMainTemplate, thisAnswer);
+    var answerLeftTemplate = "<div class='answer_left'>{{score}}</div>";
+    var answerLeftHtml = Mustache.to_html(answerLeftTemplate, thisAnswer);
+    var answerContent = [
+                    "<div class='answer-div'>",
+                    answerMainHtml,
+                    answerLeftHtml,
                     "</div>"
                   ]
-    return vendorPopupContent.join("")
+    return answerContent.join("")
   }
 }
 
-function Answer(JSONObject) {
-    this.id = JSONObject[:id];
-    this.body = JSONObject[:body];
-    this.score = JSONObject[:score];
-    this.user_id = JSONObject[:user_id];
-    this.question_id = JSONObject[:question_id];
-}
+
+

@@ -5,7 +5,18 @@ class AnswersController < ApplicationController
   def edit
   end
 
+  def index
+    @question = Question.find(params[:question_id])
+    @sorted_answers = @question.answers.order(:score)
+
+    respond_to do |format|
+      format.html {}
+      format.json { render json: @sorted_answers }
+    end
+  end
+
   def create
+    p "made it to create action"
     #Add new answer to db
     @answer = Answer.create(answer_params)
     @question = Question.find(params[:question_id])
@@ -17,13 +28,8 @@ class AnswersController < ApplicationController
     @sorted_answers = @question.answers.order(:score)
 
     respond_to do |format|
-      if Answer.find(@answer.id)
-        format.html { redirect_to @question, notice: 'Answer was successfully created.' }
-        format.json { render json: @sorted_answers }
-      else
-        format.html { redirect_to @question, notice: 'Answer was not created.'  }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to @question, notice: 'Answer was successfully created.' }
+      format.json { render json: @sorted_answers }
     end
   end
 
