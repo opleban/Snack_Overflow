@@ -1,5 +1,13 @@
 <div class = "edit_form" style="display:none;">
 
+  // <% if @error %>
+  //   <div id="error_explanation">
+  //     <ul>
+  //       <li><%= @error %></li>
+  //     </ul>
+  //   </div>
+  // <% end %>
+
   <% provide(:title, 'Edit User Info') %>
   <h1>Edit User Info</h1>
 
@@ -30,10 +38,9 @@
     $.post('/users/<%=@user.id%>.json', formData, function(jsonResponse) {
       $('.edit_form').css({
       'display': 'none'});
-      console.log(jsonResponse);
       $(".current_user h1").text(jsonResponse.name);
       $(".current_user h3").text(jsonResponse.email);
-      // console.log(jsonResponse.name);
+      // console.log(jsonResponse.errors);
       // $("body").append(jsonResponse.body);
     });
     e.preventDefault();

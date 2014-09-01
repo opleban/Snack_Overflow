@@ -33,15 +33,12 @@ class UsersController < ApplicationController
     #   render 'show'
     # end
     respond_to do |format|
-      if @user.update_attributes(user_params)
-        # format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        flash[:success] = 'User successfuly updated.'
+      if @user.password == params[:user][:password] && @user.update_attributes(user_params) 
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render json: @user, notice: 'User updated.' }
       else
-        # format.html { render action: "edit" }
-        flash.now[:error] = 'Invalid password. Failed to update.'
-        render 'show'
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html { render action: "show" }
+        format.json { render json: {:error => "Invalid Password"} }
       end
     end
   end
