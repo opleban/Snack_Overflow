@@ -1,8 +1,10 @@
-document.addEventListener('DOMContentLoaded', function(){
-  controller = new QuestionShowController()
-  controller.renderAnswerList()
-  $(".submit_button").on('click', controller.renderNewAnswerList)
-});
+$(document).on('ready page:load', function(){
+  if (window.location.href.match(/\/questions\//) != null) {
+    controller = new QuestionShowController()
+    controller.renderAnswerList()
+    $(".submit_button").on('click', controller.renderNewAnswerList)
+  }
+})
 
 //ANSWER MODEL
 function Answer(JSONObject) {
@@ -22,7 +24,7 @@ function QuestionShowController() {
 
 QuestionShowController.prototype = {
 
-  renderAnswerList: function(event) {
+  renderAnswerList: function() {
     $.ajax({
       type: "GET",
       url: $(location).attr('href')+"/answers",
