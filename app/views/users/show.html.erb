@@ -1,8 +1,9 @@
 <% provide(:title, @user.name) %>
 
 <div class = "current_user">
-  <h1>
     <%= gravatar_for @user %>
+
+  <h1>
     <%= @user.name %>
   </h1>
   <h3>
@@ -35,24 +36,7 @@
   $('a.edit').on('click', function(e) {
     e.preventDefault();
     $('.edit_form').css({
-                        'display': 'block'});
-
-    //                     'position':'relative',
-    //                     'opacity' : '1',
-    //                     'background-color' : 'white',
-    //                     'z-index' : '10'
-
-    //                   });
-    // $('.container').css({
-    //                       'display':'block',
-    //                       'position':'relative',
-    //                      'opacity' : '.1',
-    //                      'z-index' :'-10'
-    //                      // 'filter':'blur(10px)'
-
-         
-    //                     });
-
+      'display': 'block'});
   })
 </script>
 
