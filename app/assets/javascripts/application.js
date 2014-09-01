@@ -13,6 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require_tree .
+//= require ./../../../vendor/assets/javascripts/mustache.js
 // = require_tree .
-
-
